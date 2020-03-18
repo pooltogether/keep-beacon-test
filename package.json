@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "compile": "buidler compile",
+    "test": "buidler test"
+  },
+  "devDependencies": {
+    "@nomiclabs/buidler": "^1.2.0",
+    "@nomiclabs/buidler-ethers": "^1.2.0",
+    "@nomiclabs/buidler-waffle": "^1.2.0",
+    "@types/chai": "^4.2.10",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.9.1",
+    "chai": "^4.2.0",
+    "ethereum-waffle": "^2.3.2",
+    "ethers": "^4.0.45",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@keep-network/keep-core": "^0.10.0-rc.0",
+    "@keep-network/tbtc.js": "^0.10.0-pre.1",
+    "@openzeppelin/cli": "^2.7.2",
+    "@resolver-engine/core": "^0.3.3"
+  }
+}
