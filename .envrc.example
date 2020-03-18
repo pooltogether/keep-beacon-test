@@ -1,0 +1,3 @@
+export HDWALLET_MNEMONIC=<12 word mnemonic>
+export INFURA_PROVIDER_URL_ROPSTEN=https://kovan.infura.io/v3/<api key>
+export ETHERSCAN_API_KEY=<api key>

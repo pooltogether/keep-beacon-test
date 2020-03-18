@@ -22,7 +22,7 @@ contract KeepPool is Initializable {
         keepRandomBeacon = _keepRandomBeacon;
     }
 
-    function startReward() external notRequestInFlight {
+    function startReward() public notRequestInFlight returns (uint256) {
         uint256 gasCost = 800000;
         uint256 entryFee = keepRandomBeacon.entryFeeEstimate(gasCost);
         require(address(this).balance >= entryFee, "KeepPool/insuff-bal");
@@ -36,6 +36,13 @@ contract KeepPool is Initializable {
         require(success, "KeepPool/beacon-fail");
         lastRewardId = abi.decode(returnData, (uint256));
         emit StartedReward(lastRewardId, msg.sender);
+        return lastRewardId;
+    }
+
+    function startRewardCall() external view returns (uint256 rewardId) {
+        (bool success, bytes memory returnValue) = address(this).staticcall(abi.encodeWithSignature("startReward()"));
+        require(success, "start reward fail");
+        rewardId = abi.decode(returnValue, (uint256));
     }
 
     function receiveRandomNumber(uint256 _randomNumber) external onlyKeepRandomBeacon requestInFlight {
