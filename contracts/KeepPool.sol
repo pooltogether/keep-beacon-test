@@ -2,7 +2,7 @@ pragma solidity ^0.5.1;
 
 import "@openzeppelin/upgrades/contracts/Initializable.sol";
 import "@nomiclabs/buidler/console.sol";
-import "@keep-network/keep-core/contracts/IRandomBeacon.sol";
+import "./IRandomBeacon.sol";
 
 contract KeepPool is Initializable {
 
@@ -26,15 +26,10 @@ contract KeepPool is Initializable {
         uint256 gasCost = 800000;
         uint256 entryFee = keepRandomBeacon.entryFeeEstimate(gasCost);
         require(address(this).balance >= entryFee, "KeepPool/insuff-bal");
-        bytes memory callData = abi.encodeWithSignature(
-            "requestRelayEntry(address,string,uint256)",
+        lastRewardId = keepRandomBeacon.requestRelayEntry.value(entryFee)(
             address(this),
             "receiveRandomNumber(uint256)",
-            gasCost
-        );
-        (bool success, bytes memory returnData) = address(keepRandomBeacon).call.value(entryFee)(callData);
-        require(success, "KeepPool/beacon-fail");
-        lastRewardId = abi.decode(returnData, (uint256));
+            gasCost);
         emit StartedReward(lastRewardId, msg.sender);
         return lastRewardId;
     }

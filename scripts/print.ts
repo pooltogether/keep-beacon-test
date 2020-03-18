@@ -4,7 +4,7 @@
 // Runtime Environment's members available as global variable in that case.
 let benv = require("@nomiclabs/buidler");
 
-async function main() {
+async function printMain() {
   // You can run Buidler tasks from a script.
   // For example, we make sure everything is compiled by running "compile"
   await benv.run("compile");
@@ -15,7 +15,7 @@ async function main() {
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
-main()
+printMain()
   .then(() => process.exit(0))
   .catch(error => {
     console.error(error);

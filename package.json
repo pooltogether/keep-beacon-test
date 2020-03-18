@@ -2,8 +2,8 @@
   "scripts": {
     "compile": "buidler compile",
     "test": "buidler test",
-    "migrate-ropsten": "buidler run --network ropsten scripts/deploy.ts",
-    "verify-ropsten": "buidler verify-contract --contract-name KeepPool --address",
+    "deploy-ropsten": "buidler run --network ropsten scripts/deploy.ts",
+    "verify-ropsten": "buidler --network ropsten verify-contract --contract-name KeepPool --address",
     "print": "buidler run --network ropsten scripts/print.ts"
   },
   "devDependencies": {
